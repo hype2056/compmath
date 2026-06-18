@@ -14,7 +14,7 @@ planned next, not included yet.
 - Next.js 16 (App Router, TypeScript, Tailwind v4)
 - Auth.js v5 (Google OAuth) with the Prisma adapter
 - Postgres + file storage, both via Supabase (free tier)
-- Claude (Anthropic API, vision) for verification
+- Gemini (Gemini API, vision) for verification
 
 ## 1. Set up Supabase (database + photo storage)
 
