@@ -15,10 +15,13 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  friendCode    String    @unique
 
-  accounts Account[]
-  sessions Session[]
-  studySessions StudySession[]
+  accounts             Account[]
+  sessions             Session[]
+  studySessions        StudySession[]
+  friendshipsInitiated Friendship[]   @relation("FriendshipRequester")
+  friendshipsReceived  Friendship[]   @relation("FriendshipAddressee")
 
   createdAt DateTime @default(now())
 }
@@ -68,6 +71,20 @@ enum Contest {
   SMT
 }
 
+model Friendship {
+  id          String   @id @default(cuid())
+  requesterId String
+  addresseeId String
+  createdAt   DateTime @default(now())
+
+  requester User @relation("FriendshipRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  addressee User @relation("FriendshipAddressee", fields: [addresseeId], references: [id], onDelete: Cascade)
+
+  @@unique([requesterId, addresseeId])
+  @@index([requesterId])
+  @@index([addresseeId])
+}
+
 // One uploaded study session: photos of work for a given contest,
 // an optional self-reported time claim, and the AI's verification result.
 model StudySession {
@@ -82,9 +99,9 @@ model StudySession {
   photoUrls String[]
 
   // AI verification result
-  score      Int      // 0-100 plausibility/effort score
-  feedback   String   // qualitative feedback shown to the user
-  confidence String   // "low" | "medium" | "high"
+  score          Int // 0-100 plausibility/effort score
+  feedback       String // qualitative feedback shown to the user
+  confidence     String // "low" | "medium" | "high"
   hoursPlausible Boolean? // null if no hours were claimed
 
   createdAt DateTime @default(now())
