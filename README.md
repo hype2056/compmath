@@ -38,9 +38,14 @@ planned next, not included yet.
    - Production: `https://yourdomain.com/api/auth/callback/google`
 3. Copy the Client ID / Client Secret into `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET`.
 
-## 3. Get an Anthropic API key
+## 3. Get a free Gemini API key
 
-Create a key at https://console.anthropic.com and put it in `ANTHROPIC_API_KEY`.
+Go to https://aistudio.google.com/apikey, sign in with the same Google account,
+and create a key — no credit card needed. Put it in `GEMINI_API_KEY`.
+
+Note: on the free tier, Google may use your submitted prompts/photos to
+improve their models (this changes once you enable billing). For homework
+photos that's low-stakes, but worth knowing.
 
 ## 4. Configure env vars
 
