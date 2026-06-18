@@ -1,18 +1,10 @@
+import authConfig from "@/auth.config"; // 👈 No curly braces!
 import NextAuth from "next-auth";
-import authConfig from "@/auth.config";
 
 const { auth } = NextAuth(authConfig);
 
-export default auth((req) => {
-  const isLoggedIn = !!req.auth;
-  const isOnDashboard = req.nextUrl.pathname.startsWith("/dashboard");
-
-  if (isOnDashboard && !isLoggedIn) {
-    const loginUrl = new URL("/login", req.nextUrl.origin);
-    return Response.redirect(loginUrl);
-  }
-});
+export default auth;
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
