@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f7f3ea;
+  --ink: #1f2430;
+  --stamp: #b3432f;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-stamp: var(--stamp);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--paper);
+}
