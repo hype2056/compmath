@@ -67,4 +67,6 @@ export async function createSession(formData: FormData) {
   });
 
   revalidatePath("/dashboard");
+  revalidatePath("/dashboard/insights");
+  revalidatePath("/dashboard/leaderboard");
 }
